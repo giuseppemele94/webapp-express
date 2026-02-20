@@ -52,6 +52,24 @@ function show(req, res) {
     });
 }
 
+//funzione di create
+function store(req,res) {
+    res.send("create new");
+}
 
+//funzione di modifica totale PUT
+function update(req,res) {
+    res.send("Modifa totale");
+}
 
-module.exports = { index, show }
+//funzione di modifica parziale 
+function modify(req,res) {
+    res.send("Modifica parizale");
+}
+
+//funzione di eliminazione
+function destroy(req,res) {
+    res.send("cancella");
+} 
+
+module.exports = { index, show, store, update, modify, destroy }
