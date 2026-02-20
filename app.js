@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
+
+const connection = require('./data/db');
+
 
 
 // attivazione della cartella public per uso file statici
