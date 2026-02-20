@@ -21,16 +21,34 @@ function show(req, res) {
     const id = parseInt(req.params.id);
 
     //query SQL 
-    const sql = 'SELECT * FROM movies WHERE id=? ';
+    const movieSql = 'SELECT * FROM movies WHERE id=? ';
 
-    //eseguo la query
-    connection.query(sql, [id], (err, results) => {
+    const reviewSql = 'SELECT * FROM reviews WHERE movie_id = ? ';
+
+    //eseguo la query per recuperare il film 
+    connection.query(movieSql, [id], (err, movieResults) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
-        if (results.length === 0)
+        if (movieResults.length === 0)
             return res.status(404).json({
                 error: 'Post not found'
             });
-        res.json(results);
+
+        //salvo il risultato in una costante
+        const movie = movieResults[0];
+
+        //seconda chiamata a DB per recuperare recensioni del film 
+        connection.query(reviewSql, [id], (err, reviewResults) => {
+            if (err) return res.status(500).json({ error: 'Database query failed' });
+
+            //salvo la revirw in una costante
+            const review = reviewResults;
+
+            //aggiungo a oggetto movie la prop per le review
+            movie.review = reviewResults;
+            
+            //ritorno il json del fillm
+            res.json(movie); 
+        })
     });
 }
 
