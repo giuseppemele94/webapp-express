@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT;
 
+//importo il middleware cors
+const cors = require("cors");
+
+//middleware cors 
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
+
 //import Router dei movies
 const movieRouter = require('./routers/movieRouter'); 
 

@@ -41,10 +41,10 @@ function show(req, res) {
             if (err) return res.status(500).json({ error: 'Database query failed' });
 
             //salvo la revirw in una costante
-            const review = reviewResults;
+            const reviewArr = reviewResults;
 
             //aggiungo a oggetto movie la prop per le review
-            movie.review = reviewResults;
+            movie.reviews = reviewArr;
             
             //ritorno il json del fillm
             res.json(movie); 
