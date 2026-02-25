@@ -11,6 +11,7 @@ function index(req, res) {
     connection.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
 
+
         // creo una copia dei risultati con modifica path imgs
         //ciclo con map tutto l'array result prendendo tutto ciò che è presente. 
         //dove è presente il tag image prendo la stringa creata in imagePath e gli aggiungo il tag presente in img
@@ -65,8 +66,8 @@ function show(req, res) {
     });
 }
 
-//funzione di create
-function store(req,res) {
+//funzione di create della review 
+function storeReview(req,res) {
     res.send("create new");
 }
 
@@ -85,4 +86,4 @@ function destroy(req,res) {
     res.send("cancella");
 } 
 
-module.exports = { index, show, store, update, modify, destroy }
+module.exports = { index, show, storeReview, update, modify, destroy }

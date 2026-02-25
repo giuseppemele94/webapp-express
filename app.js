@@ -28,6 +28,8 @@ app.use(imagePathMiddleware);
 // attivazione della cartella public per uso file statici
 app.use(express.static('public'));
 
+app.use(express.json());
+
 // rotta home APP
 app.get('/api', (req, res) => {
     res.send("<h1>Rotta di home della nostra App di film </h1>")

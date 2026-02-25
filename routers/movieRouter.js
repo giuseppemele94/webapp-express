@@ -14,8 +14,8 @@ router.get('/',movieController.index);
 //rotta di show
 router.get('/:id',movieController.show);
 
-//rotta di create 
-router.post('/',movieController.store);
+//rotta di create recensione , ci servirà l'id del libro 
+router.post('/:id/reviews',movieController.storeReview);
 
 //rotta di modifica totale
 router.put('/:id',movieController.update);
