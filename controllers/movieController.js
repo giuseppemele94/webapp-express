@@ -68,7 +68,23 @@ function show(req, res) {
 
 //funzione di create della review 
 function storeReview(req,res) {
-    res.send("create new");
+    
+     //recupero id da parametro dinamico
+    const id = parseInt(req.params.id);
+
+    //recupero le informazioni dal body della richiesta
+    const {name, vote, text } = req.body ; 
+
+    //query 
+    const sql = 'INSERT INTO reviews ( name , vote , text, movie_id  ) VALUES (?,?,?,?) '; 
+
+    // Eseguiamo la query
+    connection.query(sql, [name, vote, text, id], (err, results) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        res.status(201);
+        res.json({ message: 'Review added', id: results.insertId });
+    });
+
 }
 
 //funzione di modifica totale PUT
